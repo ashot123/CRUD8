@@ -5,7 +5,8 @@
          id="WebApp_ID" version="2.5">
     <display-name>jspServletJdbcExample</display-name>
     <welcome-file-list>
-        <welcome-file>user.jsp</welcome-file>
+        <!--<welcome-file>user.jsp</welcome-file>-->
+        <welcome-file>allTasks.jsp</welcome-file>
     </welcome-file-list>
     <servlet>
         <description></description>
