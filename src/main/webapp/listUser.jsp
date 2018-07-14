@@ -1,15 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1"%>
+         pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@ page import="net.roseindia.bean.UserBean"%>
-<%@ page import="net.roseindia.dao.UserDao"%>
-<%@ page import="java.util.*"%>
+<%@ page import="net.roseindia.bean.UserBean" %>
+<%@ page import="net.roseindia.dao.UserDao" %>
+<%@ page import="java.util.*" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>All User</title>
 </head>
 <body>
+<p><b>All Users</b></p>
+
 <%
     //UserBean user = new UserBean();
     UserDao dao = new UserDao();
@@ -29,9 +31,12 @@
             System.out.println(user.getId());*/
             for (UserBean user : userList) {
         %>
-        <td><%=user.getId()%></td>
-        <td><%=user.getfName()%></td>
-        <td><%=user.getlName()%></td>
+        <td><%=user.getId()%>
+        </td>
+        <td><%=user.getfName()%>
+        </td>
+        <td><%=user.getlName()%>
+        </td>
         <td><a
                 href="UserHandler?action=editform&userId=<%=user.getId()%>">Update</a></td>
         <td><a
