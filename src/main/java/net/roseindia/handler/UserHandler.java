@@ -23,11 +23,10 @@ public class UserHandler extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String redirect="";
+        String redirect = "";
         String uId = request.getParameter("userid");
         String action = request.getParameter("action");
-        if(!((uId)== null) && action.equalsIgnoreCase("insert"))
-        {
+        if (!((uId) == null) && action.equalsIgnoreCase("insert")) {
             int id = Integer.parseInt(uId);
             UserBean user = new UserBean();
             //user.setId(id);
@@ -37,8 +36,7 @@ public class UserHandler extends HttpServlet {
             redirect = USER_RECORD;
             request.setAttribute("users", dao.getAllUsers());
             System.out.println("Record Added Successfully");
-        }
-        else if (action.equalsIgnoreCase("delete")){
+        } else if (action.equalsIgnoreCase("delete")) {
             String userId = request.getParameter("userId");
             int uid = Integer.parseInt(userId);
             dao.removeUser(uid);
@@ -47,20 +45,19 @@ public class UserHandler extends HttpServlet {
             System.out.println("Record Deleted Successfully");
         } else if (action.equalsIgnoreCase("editform")) {
 
-
+            String userId = request.getParameter("userId");
             UserBean user = new UserBean();
             //user.setId(id);
-            UserBean userBean = dao.getUserById(Integer.parseInt(uId));
+            int id = Integer.parseInt(userId);
+            UserBean userBean = dao.getUserById(id);
 
-
-            //user.setId(uid);
+            user.setId(id);
             user.setfName(userBean.getfName());
             user.setlName(userBean.getfName());
-
-            //user.getfName(); // setfName(request.getParameter("firstName"));
+            request.setAttribute("userBean", userBean);            //user.getfName(); // setfName(request.getParameter("firstName"));
             //user.getlName(); //setlName(request.getParameter("lastName"));
             redirect = EDIT;
-        } else if (action.equalsIgnoreCase("edit")){
+        } else if (action.equalsIgnoreCase("edit")) {
             String userId = request.getParameter("userId");
             int uid = Integer.parseInt(userId);
             UserBean user = new UserBean();
@@ -71,7 +68,7 @@ public class UserHandler extends HttpServlet {
             request.setAttribute("user", user);
             redirect = USER_RECORD;
             System.out.println("Record updated Successfully");
-        } else if (action.equalsIgnoreCase("listUser")){
+        } else if (action.equalsIgnoreCase("listUser")) {
             redirect = USER_RECORD;
             request.setAttribute("users", dao.getAllUsers());
         } else {
