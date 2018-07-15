@@ -1,6 +1,7 @@
 package net.roseindia.handler;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -70,6 +71,11 @@ public class UserHandler extends HttpServlet {
             System.out.println("Record updated Successfully");
         } else if (action.equalsIgnoreCase("listUser")) {
             redirect = USER_RECORD;
+
+            //List<UserBean> userList = dao.getAllUsers();
+            //request.setAttribute("userBeanList", userList);
+
+
             request.setAttribute("users", dao.getAllUsers());
         } else {
             redirect = INSERT;

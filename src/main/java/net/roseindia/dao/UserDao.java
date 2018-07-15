@@ -54,9 +54,10 @@ public class UserDao {
                     " WHERE userid=?";
             PreparedStatement ps = conn
                     .prepareStatement(sql);
-            ps.setString(1, userBean.getfName());
-            ps.setString(2, userBean.getlName());
-            ps.setInt(3, userBean.getId());
+            ps.setInt(1, userBean.getId());
+            ps.setString(2, userBean.getfName());
+            ps.setString(3, userBean.getlName());
+
             ps.executeUpdate();
 
         } catch (SQLException e) {

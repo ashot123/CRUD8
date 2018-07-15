@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import="net.roseindia.bean.UserBean" %>
 <%@ page import="net.roseindia.dao.UserDao" %>
@@ -14,8 +12,9 @@
 
 <%
     //UserBean user = new UserBean();
-    UserDao dao = new UserDao();
-    List<UserBean> userList = dao.getAllUsers();
+    //UserDao dao = new UserDao();
+    //List<UserBean> userList = dao.getAllUsers();
+    List<UserBean> userList = (List<UserBean>) request.getAttribute("users");
 //Iterator<UserBean> itr = userList.iterator();
 %>
 <table border="1">
@@ -45,7 +44,6 @@
     </tr>
     <%
         }
-//}
     %>
 </table>
 <p><a href="UserHandler?action=insert">Add User</a></p>
