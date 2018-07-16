@@ -46,6 +46,6 @@
         }
     %>
 </table>
-<p><a href="UserHandler?action=insert">Add User</a></p>
+<p><a href="UserHandler?action=create">Add User</a></p>
 </body>
 </html>

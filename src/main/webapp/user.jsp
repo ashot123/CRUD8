@@ -5,14 +5,14 @@
     <title>Add New User</title>
 </head>
 <body>
-<form method="POST" action='UserHandler' name="frmAddUser"><input
-        type="hidden" name="action" value="insert" />
+<form method="POST" action='UserHandler' name="frmAddUser">
+    <input type="hidden" name="action" value="insert" />
     <p><b>Add New Record</b></p>
     <table>
-        <tr>
+        <%--<tr>
             <td>User ID</td>
             <td><input type="text" name="userid" /></td>
-        </tr>
+        </tr>--%>
         <tr>
             <td>First Name</td>
             <td><input type="text" name="firstName" /></td>

@@ -19,27 +19,41 @@ public class UserDao {
         conn = ConnectionProvider.getConnection();
     }
 
-    public void addUser(UserBean userBean) {
+    public int addUser(UserBean userBean) {
+        ResultSet rs = null;
+        int generatedId = 0;
         try {
-            String sql = "INSERT INTO users(userid, firstname,lastname)" +
-                    " VALUES (?, ?, ? )";
+            String sql = "INSERT INTO users(firstname,lastname) VALUES ( ?, ? )";
             PreparedStatement ps = conn.prepareStatement(sql);
 
-            ps.setInt(1, userBean.getId());
-            ps.setString(2, userBean.getfName());
-            ps.setString(3, userBean.getlName());
+            //ps.setInt(1, userBean.getId());
+            ps.setString(1, userBean.getfName());
+            ps.setString(2, userBean.getlName());
             ps.executeUpdate();
+
+
+/*             conn.prepareStatement(sql, int[]);
+           rs = ps.getGeneratedKeys();
+              java.sql.SQLException: Generated keys not requested.
+              You need to specify Statement.RETURN_GENERATED_KEYS to Statement.executeUpdate(), Statement.executeLargeUpdate()
+              or Connection.prepareStatement().
+
+            if (rs.next()) {
+                generatedId = rs.getInt(1);
+                //System.out.println("Auto Generated Primary Key " + rs.getInt(1));
+            }*/
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        return generatedId;
     }
 
     public void removeUser(int userId) {
         try {
             String sql = "DELETE FROM users WHERE userid=?";
-            PreparedStatement ps = conn
-                    .prepareStatement(sql);
+            PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, userId);
             ps.executeUpdate();
 
@@ -50,13 +64,11 @@ public class UserDao {
 
     public void editUser(UserBean userBean) {
         try {
-            String sql = "UPDATE users SET firstname=?, lastname=?" +
-                    " WHERE userid=?";
-            PreparedStatement ps = conn
-                    .prepareStatement(sql);
-            ps.setInt(1, userBean.getId());
-            ps.setString(2, userBean.getfName());
-            ps.setString(3, userBean.getlName());
+            String sql = "UPDATE users SET firstname = ?, lastname = ? WHERE userid = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(3, userBean.getId());
+            ps.setString(1, userBean.getfName());
+            ps.setString(2, userBean.getlName());
 
             ps.executeUpdate();
 
@@ -89,8 +101,7 @@ public class UserDao {
         UserBean userBean = new UserBean();
         try {
             String sql = "SELECT * FROM users WHERE userid=?";
-            PreparedStatement ps = conn.
-                    prepareStatement(sql);
+            PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, userId);
             ResultSet rs = ps.executeQuery();
 

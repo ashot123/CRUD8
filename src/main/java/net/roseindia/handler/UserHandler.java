@@ -25,14 +25,17 @@ public class UserHandler extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String redirect = "";
-        String uId = request.getParameter("userid");
+        String uId = request.getParameter("userId");
         String action = request.getParameter("action");
-        if (!((uId) == null) && action.equalsIgnoreCase("insert")) {
-            int id = Integer.parseInt(uId);
+        if (action.equalsIgnoreCase("create")) {
+            redirect = INSERT;
+        } else if (/*!((uId) == null) && */action.equalsIgnoreCase("insert")) {
+            //int id = Integer.parseInt(uId);
             UserBean user = new UserBean();
             //user.setId(id);
             user.setfName(request.getParameter("firstName"));
             user.setlName(request.getParameter("lastName"));
+            /*int generatedId = */
             dao.addUser(user);
             redirect = USER_RECORD;
             request.setAttribute("users", dao.getAllUsers());
@@ -66,7 +69,8 @@ public class UserHandler extends HttpServlet {
             user.setfName(request.getParameter("firstName"));
             user.setlName(request.getParameter("lastName"));
             dao.editUser(user);
-            request.setAttribute("user", user);
+            request.setAttribute("users", dao.getAllUsers());
+            //request.setAttribute("user", user);
             redirect = USER_RECORD;
             System.out.println("Record updated Successfully");
         } else if (action.equalsIgnoreCase("listUser")) {
@@ -77,9 +81,9 @@ public class UserHandler extends HttpServlet {
 
 
             request.setAttribute("users", dao.getAllUsers());
-        } else {
+        } /*else {
             redirect = INSERT;
-        }
+        }*/
 
         RequestDispatcher rd = request.getRequestDispatcher(redirect);
         rd.forward(request, response);

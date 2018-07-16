@@ -30,7 +30,7 @@
         </tr>
         <tr>
             <td>First Name</td>
-            <td><input type="text" name="firstName" value= ${userBean.fName} /></td>
+            <td><input type="text" name="firstName" value= ${userBean.fName}></td>
         </tr>
         <tr>
             <td>Last Name</td>

@@ -13,7 +13,7 @@
 <body>
 <p><b>All Tasks</b></p>
 <br/>
-<p><a href="UserHandler?action=insert">Add User</a></p>
+<p><a href="UserHandler?action=create">Add User</a></p>
 <p><a href="UserHandler?action=listUser">View-All-Records</a></p>
 </body>
 </html>
