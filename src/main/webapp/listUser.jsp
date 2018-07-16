@@ -9,13 +9,14 @@
 </head>
 <body>
 <p><b>All Users</b></p>
-
+<%--<jsp:useBean id="userList" class="java.util.ArrayList"  scope="request" />--%>
 <%
     //UserBean user = new UserBean();
     //UserDao dao = new UserDao();
     //List<UserBean> userList = dao.getAllUsers();
     List<UserBean> userList = (List<UserBean>) request.getAttribute("users");
 //Iterator<UserBean> itr = userList.iterator();
+    //List<UserBean> userList2 = (List<UserBean>)userList;
 %>
 <table border="1">
     <tr>
@@ -25,22 +26,14 @@
     </tr>
     <tr>
         <%
-            /*while(itr.hasNext())
-            {
-            System.out.println(user.getId());*/
+            //List<UserBean> userList2 = (List<UserBean>)userList;
             for (UserBean user : userList) {
         %>
-        <td><%=user.getId()%>
-        </td>
-        <td><%=user.getfName()%>
-        </td>
-        <td><%=user.getlName()%>
-        </td>
-        <td><a
-                href="UserHandler?action=editform&userId=<%=user.getId()%>">Update</a></td>
-        <td><a
-                href="UserHandler?action=delete&userId=<%=user.getId()%>">Delete</a></td>
-
+        <td><%=user.getId()%></td>
+        <td><%=user.getfName()%></td>
+        <td><%=user.getlName()%></td>
+        <td><a href="UserHandler?action=editform&userId=<%=user.getId()%>">Update</a></td>
+        <td><a href="UserHandler?action=delete&userId=<%=user.getId()%>">Delete</a></td>
     </tr>
     <%
         }

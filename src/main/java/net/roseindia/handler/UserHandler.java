@@ -74,16 +74,9 @@ public class UserHandler extends HttpServlet {
             redirect = USER_RECORD;
             System.out.println("Record updated Successfully");
         } else if (action.equalsIgnoreCase("listUser")) {
-            redirect = USER_RECORD;
-
-            //List<UserBean> userList = dao.getAllUsers();
-            //request.setAttribute("userBeanList", userList);
-
-
             request.setAttribute("users", dao.getAllUsers());
-        } /*else {
-            redirect = INSERT;
-        }*/
+            redirect = USER_RECORD;
+        }
 
         RequestDispatcher rd = request.getRequestDispatcher(redirect);
         rd.forward(request, response);

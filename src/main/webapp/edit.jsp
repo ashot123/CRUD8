@@ -2,30 +2,23 @@
 <%--<%@ page import="net.roseindia.bean.UserBean" %>--%>
 <%--<%@ page import="net.roseindia.dao.UserDao"%>--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
     <title>Edit User</title>
 </head>
 <body>
-<%--<%
-    UserBean user = new UserBean();
-%>
-<%
-    UserDao dao = new UserDao();
-%>--%>
+<p><b>All Users</b></p>
+
 <form method="POST" action='UserHandler' name="frmEditUser"><input
-        type="hidden" name="action" value="edit" />
- <%--   <%
-    String uid = request.getParameter("userId");
-    if (!((uid) == null)) {
-        int id = Integer.parseInt(uid);
-        user = dao.getUserById(id);
-%>--%>
+        type="hidden" name="action" value="edit"/>
+
     <table>
         <tr>
             <td>User ID</td>
             <td>
-                <input style="background-color: #d4d4d4" type="text" name="userId" readonly="readonly" value= ${userBean.id}>
+                <input style="background-color: #d4d4d4" type="text" name="userId" readonly="readonly"
+                       value= ${userBean.id}>
             </td>
         </tr>
         <tr>
@@ -38,10 +31,10 @@
         </tr>
         <tr>
             <td></td>
-            <td><input type="submit" value="Update" /></td>
+            <td><input type="submit" value="Update"/></td>
         </tr>
     </table>
-
 </form>
+<p><a href="UserHandler?action=listUser">View-All-Records</a></p>
 </body>
 </html>
