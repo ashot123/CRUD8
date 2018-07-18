@@ -9,10 +9,6 @@
     <input type="hidden" name="action" value="insert" />
     <p><b>Add New Record</b></p>
     <table>
-        <%--<tr>
-            <td>User ID</td>
-            <td><input type="text" name="userid" /></td>
-        </tr>--%>
         <tr>
             <td>First Name</td>
             <td><label>
