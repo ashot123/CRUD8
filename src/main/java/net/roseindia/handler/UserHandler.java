@@ -16,6 +16,8 @@ public class UserHandler extends HttpServlet {
     private static String EDIT = "/edit.jsp";
     private static String USER_RECORD = "/listUser.jsp";
     private UserDao dao;
+    private int page = 1;
+    private int recordsPerPage = 5;
 
     public UserHandler() {
         super();
@@ -37,14 +39,20 @@ public class UserHandler extends HttpServlet {
             /*int generatedId = */
             dao.addUser(user);
             redirect = USER_RECORD;
-            request.setAttribute("users", dao.getAllUsers());
+            request.setAttribute("users", dao.getAllUsers((page - 1) * recordsPerPage, recordsPerPage));
+
+            int noOfRecords = dao.getNoOfRecords();
+            int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
+            request.setAttribute("noOfPages", noOfPages);
+            request.setAttribute("currentPage", page);
+
             System.out.println("Record Added Successfully");
         } else if (action.equalsIgnoreCase("delete")) {
             String userId = request.getParameter("userId");
             int uid = Integer.parseInt(userId);
             dao.removeUser(uid);
             redirect = USER_RECORD;
-            request.setAttribute("users", dao.getAllUsers());
+            request.setAttribute("users", dao.getAllUsers((page - 1) * recordsPerPage, recordsPerPage));
             System.out.println("Record Deleted Successfully");
         } else if (action.equalsIgnoreCase("editform")) {
 
@@ -68,12 +76,23 @@ public class UserHandler extends HttpServlet {
             user.setFirstName(request.getParameter("firstName"));
             user.setLastName(request.getParameter("lastName"));
             dao.editUser(user);
-            request.setAttribute("users", dao.getAllUsers());
+            //request.setAttribute("users", dao.getAllUsers());
             //request.setAttribute("user", user);
             redirect = USER_RECORD;
             System.out.println("Record updated Successfully");
         } else if (action.equalsIgnoreCase("listUser")) {
-            request.setAttribute("users", dao.getAllUsers());
+            //int page = 1;
+            //int recordsPerPage = 3;
+            if (request.getParameter("page") != null) {
+                page = Integer.parseInt(request.getParameter("page"));
+            }
+
+            int noOfRecords = dao.getNoOfRecords();
+            int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
+            request.setAttribute("noOfPages", noOfPages);
+            request.setAttribute("currentPage", page);
+
+            request.setAttribute("users", dao.getAllUsers((page - 1) * recordsPerPage, recordsPerPage));
             redirect = USER_RECORD;
         }
 

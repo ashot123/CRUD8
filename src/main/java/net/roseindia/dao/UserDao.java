@@ -13,6 +13,7 @@ import net.roseindia.dbconnection.ConnectionProvider;
 public class UserDao {
 
     private Connection conn;
+    private int noOfRecords;
 
     public UserDao() {
         conn = ConnectionProvider.getConnection();
@@ -76,10 +77,12 @@ public class UserDao {
         }
     }
 
-    public List getAllUsers() {
+    public List getAllUsers(int offset, int noOfRecords) {
+        //int offset = 0;
+        //int noOfRecord = 5;
         List users = new ArrayList();
         try {
-            String sql = "SELECT * FROM users";
+            String sql = "SELECT SQL_CALC_FOUND_ROWS * FROM users limit " + offset + ", " + noOfRecords;
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -89,11 +92,19 @@ public class UserDao {
                 userBean.setLastName(rs.getString("lastname"));
                 users.add(userBean);
             }
+            rs.close();
+            rs = ps.executeQuery("SELECT FOUND_ROWS()");
+            if (rs.next())
+                this.noOfRecords = rs.getInt(1);
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
         return users;
+    }
+
+    public int getNoOfRecords() {
+        return noOfRecords;
     }
 
     public UserBean getUserById(int userId) {
