@@ -1,7 +1,6 @@
 package net.roseindia.handler;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -33,8 +32,8 @@ public class UserHandler extends HttpServlet {
             //int id = Integer.parseInt(uId);
             UserBean user = new UserBean();
             //user.setId(id);
-            user.setfName(request.getParameter("firstName"));
-            user.setlName(request.getParameter("lastName"));
+            user.setFirstName(request.getParameter("firstName"));
+            user.setLastName(request.getParameter("lastName"));
             /*int generatedId = */
             dao.addUser(user);
             redirect = USER_RECORD;
@@ -56,18 +55,18 @@ public class UserHandler extends HttpServlet {
             UserBean userBean = dao.getUserById(id);
 
             user.setId(id);
-            user.setfName(userBean.getfName());
-            user.setlName(userBean.getfName());
-            request.setAttribute("userBean", userBean);            //user.getfName(); // setfName(request.getParameter("firstName"));
-            //user.getlName(); //setlName(request.getParameter("lastName"));
+            user.setFirstName(userBean.getFirstName());
+            user.setLastName(userBean.getFirstName());
+            request.setAttribute("userBean", userBean);            //user.getFirstName(); // setFirstName(request.getParameter("firstName"));
+            //user.getLastName(); //setLastName(request.getParameter("lastName"));
             redirect = EDIT;
         } else if (action.equalsIgnoreCase("edit")) {
             String userId = request.getParameter("userId");
             int uid = Integer.parseInt(userId);
             UserBean user = new UserBean();
             user.setId(uid);
-            user.setfName(request.getParameter("firstName"));
-            user.setlName(request.getParameter("lastName"));
+            user.setFirstName(request.getParameter("firstName"));
+            user.setLastName(request.getParameter("lastName"));
             dao.editUser(user);
             request.setAttribute("users", dao.getAllUsers());
             //request.setAttribute("user", user);

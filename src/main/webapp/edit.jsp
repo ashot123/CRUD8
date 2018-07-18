@@ -27,13 +27,13 @@
         <tr>
             <td>First Name</td>
             <td><label>
-                <input type="text" name="firstName" value= ${userBean.fName}>
+                <input type="text" name="firstName" value= ${userBean.firstName}>
             </label></td>
         </tr>
         <tr>
             <td>Last Name</td>
             <td><label>
-                <input type="text" name="lastName" value=${userBean.lName}>
+                <input type="text" name="lastName" value=${userBean.lastName}>
             </label></td>
         </tr>
         <tr>

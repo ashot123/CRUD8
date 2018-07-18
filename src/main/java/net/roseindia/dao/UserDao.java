@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,8 +26,8 @@ public class UserDao {
             PreparedStatement ps = conn.prepareStatement(sql);
 
             //ps.setInt(1, userBean.getId());
-            ps.setString(1, userBean.getfName());
-            ps.setString(2, userBean.getlName());
+            ps.setString(1, userBean.getFirstName());
+            ps.setString(2, userBean.getLastName());
             ps.executeUpdate();
 
 
@@ -67,8 +66,8 @@ public class UserDao {
             String sql = "UPDATE users SET firstname = ?, lastname = ? WHERE userid = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(3, userBean.getId());
-            ps.setString(1, userBean.getfName());
-            ps.setString(2, userBean.getlName());
+            ps.setString(1, userBean.getFirstName());
+            ps.setString(2, userBean.getLastName());
 
             ps.executeUpdate();
 
@@ -86,8 +85,8 @@ public class UserDao {
             while (rs.next()) {
                 UserBean userBean = new UserBean();
                 userBean.setId(rs.getInt("userid"));
-                userBean.setfName(rs.getString("firstname"));
-                userBean.setlName(rs.getString("lastname"));
+                userBean.setFirstName(rs.getString("firstname"));
+                userBean.setLastName(rs.getString("lastname"));
                 users.add(userBean);
             }
         } catch (SQLException e) {
@@ -107,8 +106,8 @@ public class UserDao {
 
             if (rs.next()) {
                 userBean.setId(rs.getInt("userid"));
-                userBean.setfName(rs.getString("firstname"));
-                userBean.setlName(rs.getString("lastname"));
+                userBean.setFirstName(rs.getString("firstname"));
+                userBean.setLastName(rs.getString("lastname"));
             }
         } catch (SQLException e) {
             e.printStackTrace();

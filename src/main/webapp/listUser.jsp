@@ -30,8 +30,8 @@
             for (UserBean user : userList) {
         %>
         <td><%=user.getId()%></td>
-        <td><%=user.getfName()%></td>
-        <td><%=user.getlName()%></td>
+        <td><%=user.getFirstName()%></td>
+        <td><%=user.getLastName()%></td>
         <td><a href="UserHandler?action=editform&userId=<%=user.getId()%>">Update</a></td>
         <td><a href="UserHandler?action=delete&userId=<%=user.getId()%>">Delete</a></td>
     </tr>
