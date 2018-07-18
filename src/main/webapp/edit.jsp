@@ -2,6 +2,7 @@
 <%--<%@ page import="net.roseindia.bean.UserBean" %>--%>
 <%--<%@ page import="net.roseindia.dao.UserDao"%>--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<jsp:useBean id="userBean" scope="request" type="net.roseindia.bean.UserBean"/>
 
 <html>
 <head>
@@ -17,17 +18,23 @@
         <tr>
             <td>User ID</td>
             <td>
-                <input style="background-color: #d4d4d4" type="text" name="userId" readonly="readonly"
-                       value= ${userBean.id}>
+                <label>
+                    <input style="background-color: #d4d4d4" type="text" name="userId" readonly="readonly"
+                           value= ${userBean.id}>
+                </label>
             </td>
         </tr>
         <tr>
             <td>First Name</td>
-            <td><input type="text" name="firstName" value= ${userBean.fName}></td>
+            <td><label>
+                <input type="text" name="firstName" value= ${userBean.fName}>
+            </label></td>
         </tr>
         <tr>
             <td>Last Name</td>
-            <td><input type="text" name="lastName" value=${userBean.lName}></td>
+            <td><label>
+                <input type="text" name="lastName" value=${userBean.lName}>
+            </label></td>
         </tr>
         <tr>
             <td></td>

@@ -9,7 +9,7 @@
         <welcome-file>allTasks.jsp</welcome-file>
     </welcome-file-list>
     <servlet>
-        <description></description>
+        <description>Just description</description>
         <servlet-name>UserHandler</servlet-name>
         <servlet-class>net.roseindia.handler.UserHandler</servlet-class>
     </servlet>

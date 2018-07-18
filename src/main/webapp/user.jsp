@@ -15,11 +15,15 @@
         </tr>--%>
         <tr>
             <td>First Name</td>
-            <td><input type="text" name="firstName" /></td>
+            <td><label>
+                <input type="text" name="firstName" />
+            </label></td>
         </tr>
         <tr>
             <td>Last Name</td>
-            <td><input type="text" name="lastName" /></td>
+            <td><label>
+                <input type="text" name="lastName" />
+            </label></td>
         </tr>
         <tr>
             <td></td>
