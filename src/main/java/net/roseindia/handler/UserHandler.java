@@ -76,6 +76,13 @@ public class UserHandler extends HttpServlet {
             user.setFirstName(request.getParameter("firstName"));
             user.setLastName(request.getParameter("lastName"));
             dao.editUser(user);
+            request.setAttribute("users", dao.getAllUsers((page - 1) * recordsPerPage, recordsPerPage));
+
+            int noOfRecords = dao.getNoOfRecords();
+            int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
+            request.setAttribute("noOfPages", noOfPages);
+            request.setAttribute("currentPage", page);
+
             //request.setAttribute("users", dao.getAllUsers());
             //request.setAttribute("user", user);
             redirect = USER_RECORD;
